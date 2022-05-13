@@ -1,0 +1,18 @@
+.tablero {
+    display: flex;
+    border: 1px solid gray;
+    flex-wrap: wrap;
+    height: 800px;
+    margin: 0 auto;
+    width: 600px;
+}
+
+img {
+    max-width: 100%;
+    margin: 0;
+}
+
+.titulo,
+.acierto {
+    text-align: center;
+}
