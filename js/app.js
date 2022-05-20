@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    imgPosicion = [];
+    imgElegida = [];
+    let contador = 0;
+    let acierto = document.querySelector('.acierto');
+
     const imagenes = [
         {
             url: '../img/anng.png',
@@ -22,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             nombre: 'suko'
         },
         {
-            url: '../img/iron.png',
-            nombre: 'iron'
+            url: '../img/airon.png',
+            nombre: 'airon'
         },
         {
             url: '../img/anng.png',
@@ -46,25 +51,62 @@ document.addEventListener('DOMContentLoaded', () => {
             nombre: 'suko'
         },
         {
-            url: '../img/iron.png',
-            nombre: 'iron'
+            url: '../img/airon.png',
+            nombre: 'airon'
         }
     ];
+
+    imagenes.sort(() => Math.random() - 0.5);
 
     const tablero = document.querySelector('.tablero');
 
     const agregarImg = () => {
-        for (let imgen of imagenes) {
+        for (let i = 0; i < imagenes.length; i++) {
             const img = document.createElement('img');
-            img.append(imgen);
+            // img.append(imagenes[i]);
             img.setAttribute('src', '../img/interrogacion.jpg');
-            img.setAttribute('alt', imgen.nombre);
-            img.setAttribute('width', "200px");
-            img.setAttribute('border', "1px");
+            // img.setAttribute('alt', imagenes[i].nombre);
+            img.setAttribute('data-id', i);
+
+            img.addEventListener('click', mostrarImg)  
 
             tablero.appendChild(img);
         }
     }
 
-    agregarImg()
+    agregarImg();
+
+    function mostrarImg() {
+        let posicionImg = this.getAttribute('data-id');
+        this.setAttribute('src', imagenes[posicionImg].url);
+
+        imgElegida.push(imagenes[posicionImg].nombre);
+        imgPosicion.push(posicionImg);
+       
+        if(imgElegida.length == 2) {
+            setTimeout(compararImg, 300)
+        }
+    }
+
+    function compararImg() {
+
+        const todasImg = document.querySelectorAll('.tablero img');
+        const opt1 = imgPosicion[0];
+        const opt2 = imgPosicion[1];
+
+        if (imgElegida[0] === imgElegida[1]) {
+            todasImg[opt1].setAttribute('src', '../img/check.webp');
+            todasImg[opt2].setAttribute('src', '../img/check.webp');
+            contador++;
+            acierto.textContent = contador;
+            alert('La imagenes son iguales');
+        } else {
+            todasImg[opt1].setAttribute('src', '../img/interrogacion.jpg');
+            todasImg[opt2].setAttribute('src', '../img/interrogacion.jpg');
+            alert('Las imagenes no coinciden :(')
+        }
+
+        imgElegida = [];
+        imgPosicion = [];
+    }
 });
