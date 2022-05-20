@@ -18,10 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nombre: 'sokka'
         },
         {
-            url: '../img/toph.jpg',
-            nombre: 'toph'
-        },
-        {
             url: '../img/suko.jpg',
             nombre: 'suko'
         },
@@ -46,10 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nombre: 'sokka'
         },
         {
-            url: '../img/toph.jpg',
-            nombre: 'toph'
-        },
-        {
             url: '../img/suko.jpg',
             nombre: 'suko'
         },
@@ -65,9 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let imgen of imagenes) {
             const img = document.createElement('img');
             img.append(imgen);
-            img.setAttribute('src', '../img/interrogacion.webp');
+            img.setAttribute('src', '../img/interrogacion.jpg');
             img.setAttribute('alt', imgen.nombre);
             img.setAttribute('width', "200px");
+            img.setAttribute('border', "1px");
 
             tablero.appendChild(img);
         }
