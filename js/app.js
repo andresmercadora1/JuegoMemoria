@@ -105,7 +105,12 @@
                 contador++;
                 acierto.textContent = contador;
                 alert('La imagenes son iguales');
-                
+                if(contador == 6) {
+                    const seguir = confirm("Deseas intentarlo nuevamente");
+                    if(seguir){
+                        location.reload();
+                    }
+                }
                 
             } else {
                 todasImg[opt1].setAttribute('src', '../img/interrogacion.jpg');
